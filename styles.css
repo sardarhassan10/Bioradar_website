@@ -1,0 +1,138 @@
+a:link {
+  color: floralwhite;
+  background-color: transparent;
+}
+
+a:visited {
+	color:  floralwhite;
+}
+
+.background {
+  margin:auto;
+  background-color: black;
+  color: floralwhite;
+  /*background-image: url(../heart.png);*/
+  background-size: 80% 100%;
+  border-radius: 0 !important
+  /*-webkit-backgroundsize: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+*/
+
+}
+
+.row_header {
+  margin: 0px auto;
+  padding: 0px auto;
+}
+
+.row-content {
+  margin:  0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+}
+
+.footer {
+  background-color: black;
+  color: floralwhite;
+  margin: 0px auto;
+  padding: 60px 0px 60px 0px;
+}
+
+.body {
+  background-color: #22252c  !important;
+  /*padding: 20px 0px 20px 0px;
+  margin-bottom: 200px !important*/
+}
+
+.txl1 {
+  font: Helvetica Neue;
+  font-size: 20px;
+  color: #53a351;
+  text-align: center;
+  margin:  0px auto;
+  padding: 0px 0px 0px 0px;
+  min-height: 50px;
+}
+
+
+.txl2 {
+  font: Helvetica Neue;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+}
+
+.txl2a {
+  font: Helvetica Neue;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  padding: 0px 0px 30px 0px;
+  min-height: 50px;
+}
+
+.txl3 {
+  font: Helvetica Neue;
+  text-align: center;
+  margin:  0px auto;
+  padding: 20px 0px 20px 0px;
+  min-height: 50px;
+}
+
+
+.txl4 {
+  font: Helvetica Neue;
+  text-align: center;
+  margin:  0px auto;
+  padding: 30px 0px 30px 0px;
+  min-height: 30px;
+}
+
+.nav_bar {
+  background-color: #22252c;
+  padding: 0px 20px 0px 0px;
+  margin:  0px auto;
+
+}
+
+.middle {
+  background-color: #22252c;
+  color: floralwhite;
+  margin: 0px auto;
+  padding: 0px 0px 0px 0px;
+
+}
+
+.navbar-toggle  {
+    background-color: rgb(255, 255, 255);
+}
+
+.icon-bar{
+      background-color: rgb(30, 55, 55);
+  }
+
+.btn-success{
+  background-color:  #53a351 !important;
+  color: floralwhite !important;
+}
+
+.button2 {
+  padding: 24px 17px;
+}
+
+.aboutus{
+  padding: 20px 40px 0px 40px;
+  color: floralwhite;
+}
+
+.graph{
+  font: Helvetica Neue;
+  font-size: 20px;
+  color: floralwhite;
+  padding: 40px 0px 0px 0px;
+  text-align: center;
+}
+

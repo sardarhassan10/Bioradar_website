@@ -17,12 +17,30 @@
 
 // Get a reference to the database service
 var database = firebase.database();
-var ref = database.ref('sardar');
-ref.on ('value', getData,err);
-var  today = new Date(); //new date object
+var ref = database.ref('Users');
+ref.once('value',  function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      	var childKey = childSnapshot.key;
+		//console.log(childKey);
+		var x = document.getElementById("userlist");
+		var option = document.createElement("option");
+		option.text = childKey;
+		x.add(option);
+      // ...
+    });
+  });
+
+
+//ref.on ('value', getData,err);
 var hr = 0;
 var br = 0;
 var hrv = 0;
+var selected_user; //selected user
+var once = false;
+var setData;
+var firstrun = true;
+var lastPointTime;
+var temp;
 //var br_graph_data= [12,10,11,13];
 var br_graph_data = []; //= [["16:10:10",12],["16:10:12",13],["16:10:14",15]];
 var hr_graph_data = [];
@@ -30,21 +48,13 @@ var hrv_graph_data = [];
 var graph_counter = 0;
 const graph_limit = 5;
 
-// function to get date
-function getDate (){
-	//var today = new Date();
-	var dd = String(today.getDate()).padStart(2, '0');
-	var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-	//var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-	var mm = months[today.getMonth()];
-	var yyyy = today.getFullYear();
-	yyyy= yyyy%2000;
-	today = dd + mm + yyyy;
-	console.log(today);
-}
-window.onload = getDate(); //Always check for date at loading of webpage
-console.log(today); //display date
 
+//function to get time 
+function getTime(msValue){
+	var d = new Date(parseInt(msValue)); 
+	console.log(d.toLocaleTimeString());
+	return d.toLocaleTimeString();
+}
 
 function drawGraph(data_set, id){
 
@@ -118,15 +128,7 @@ function drawGraph(data_set, id){
 
  var chart = new google.visualization.LineChart(document.getElementById(id));
  chart.draw(data, options1);
- /*
-function resize() {
-var chart = new google.visualization.LineChart(document.getElementById(id));
-chart.draw(data, options1);
-}
-window.onload = resize();
-window.onresize = resize;
-	}
-*/
+
 }}
 
 $(window).resize(function(){
@@ -139,49 +141,11 @@ $(window).resize(function(){
 // function to get data
 function getData(data){
 	//console.log('Hello');
-	var setData = data.val();
+	setData = data.val();
 	var keys = Object.keys(setData);
 	console.log(keys); //get keys
-	todaysData = setData[today];
-	if (todaysData != undefined) // if data exists
-	{
-		console.log(todaysData); // get todays data
-		todaysDataKeys = Object.keys(todaysData);
-		console.log(todaysDataKeys);
-		var k = todaysDataKeys[todaysDataKeys.length-1]; // get last key
-		todaysDataLast = todaysData[k]; // get last data
-		hr = todaysDataLast.HR;
-		br = todaysDataLast.BR;
-		hrv = todaysDataLast.HRV;
-		console.log('HR is', hr, 'BR is ', br, 'HRV is ' , hrv);
-		//print values in HTML
-		document.getElementById("HRVData").innerHTML = 'HRV recorded at '+ k +' is: ' + hrv;
-		document.getElementById("HRData").innerHTML = 'HR recorded at ' + k + ' is: ' + hr + ' BPM';
-		document.getElementById("BRData").innerHTML = 'BR recorded at ' + k + ' is: ' + br + ' BPM';
-		br_graph_data.push([k,br]);
-		hr_graph_data.push([k,hr]);
-		hrv_graph_data.push([k,hrv]);
-		graph_counter +=1;
-		if (graph_counter>=graph_limit+1) //make sure not more than 5 data points are shown in graph
-		{
-			br_graph_data.shift();
-			hr_graph_data.shift();
-			hrv_graph_data.shift();
-		}
-		drawGraph(br_graph_data,'BRGraph');
-		drawGraph(hr_graph_data,'HRGraph');
-		drawGraph(hrv_graph_data,'HRVGraph');
-
-	} else {
-		document.getElementById("HRVData").innerHTML = 'No Data For Today';
-		document.getElementById("HRData").innerHTML = 'No Data For Today';
-		document.getElementById("BRData").innerHTML = 'No Data For Today';
-		//br_graph_data.push([k,br]);
-		drawGraph(br_graph_data,'BRGraph');
-		drawGraph(hr_graph_data,'HRGraph');
-		drawGraph(hrv_graph_data,'HRVGraph');
-	}
-
+	if (selected_user!= null && selected_user != 'Select' )
+		drawing();
 
 }
 
@@ -191,7 +155,80 @@ function err(error){
 	console.log('Error!');
 	console.log(error);
 }
+
+
+function getUser(){
+	selected_user = '';
+	selected_user = document.getElementById("userlist").value;
+	console.log(selected_user);
+	br_graph_data = [];
+	hr_graph_data = [];
+	hrv_graph_data = [];
+	graph_counter = 0;
+	firstrun = true;
+	
+	var str='';
+	str= 'Users/'+selected_user;
+	ref.off();
+	ref = database.ref(str);
+	ref.on ('value', getData,err);
+
+}
+
+
+function drawing(){
+	console.log('entered drawing');
+	if (firstrun != true) // if data exists
+	{
+
+		//var y = setData[selected_user];
+		var timekeys = Object.keys(setData);
+		var latestData = setData[timekeys[timekeys.length - 1]];
+		lastPointTime = timekeys[timekeys.length - 1];
+		//if (lastPointTime!=temp){
+
+			temp = lastPointTime;
+			hr = latestData.HR;
+			br = latestData.BR;
+			hrv = latestData.HRV;
+			k = getTime(lastPointTime);
+			console.log('HR is', hr, 'BR is ', br, 'HRV is ' , hrv);
+			//print values in HTML
+			document.getElementById("HRVData").innerHTML = 'HRV recorded at '+ k +' is: ' + hrv;
+			document.getElementById("HRData").innerHTML = 'HR recorded at ' + k + ' is: ' + hr + ' BPM';
+			document.getElementById("BRData").innerHTML = 'BR recorded at ' + k + ' is: ' + br + ' BPM';
+			br_graph_data.push([k,br]);
+			hr_graph_data.push([k,hr]);
+			hrv_graph_data.push([k,hrv]);
+			graph_counter +=1;
+			if (graph_counter>=graph_limit+1) //make sure not more than 5 data points are shown in graph
+			{
+				br_graph_data.shift();
+				hr_graph_data.shift();
+				hrv_graph_data.shift();
+			}
+			drawGraph(br_graph_data,'BRGraph');
+			drawGraph(hr_graph_data,'HRGraph');
+			drawGraph(hrv_graph_data,'HRVGraph');
+		//}
+
+	} else {
+		firstrun =false;
+		document.getElementById("HRVData").innerHTML = 'No Data';
+		document.getElementById("HRData").innerHTML = 'No Data';
+		document.getElementById("BRData").innerHTML = 'No Data';
+		//br_graph_data.push([k,br]);
+		drawGraph(br_graph_data,'BRGraph');
+		drawGraph(hr_graph_data,'HRGraph');
+		drawGraph(hrv_graph_data,'HRVGraph');
+	}
+}
+
 /*
+function buttonFunction(){
+	console.log('pressed');
+}
+
 function sendData() {
 	firebase.database().ref('sardar/' + 'doc1').set({
 	HR: 15,

@@ -26,10 +26,10 @@
 
 </head>
 
-<body class="text-left">
+<body class="text-left body">
 
 
-<nav class="navbar navbar-expand-lg nav_bar sticky-top justify-content-right">
+<nav class="navbar navbar-expand-lg nav_bar sticky-top justify-content-right" style="background-color: black;">
   <a class="navbar-brand" href="index.html">
     <img src="br.png" width="50" height="50" alt="" >
   </a>
@@ -38,7 +38,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link active" href="measure.html">Measure <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="realtime_measure.html">Realtime View <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="data.html"> Data <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="about-us.html">About Us</a>
       <a data-toggle="modal" data-target="#loginModal" class="nav-item nav-link" href="#View">Log In</a>
     </div>
@@ -89,87 +91,9 @@
  </div>
 
 
-  <div class ="container-fluid middle">
+  <div class ="container-fluid middle " style=" padding-bottom: 30px; background-color: white;">
 
-    <div class="row txl4 justify-content-center">
-        <h5>Measure Health Data</h5>
-
-    </div>
-
-    <div class="row justify-content-center">
-        <h5>Click On Your Desired Vital Sign</h5>
-    </div>
-
-    <div class = "row justify-content-around">
-      <div class = "col-5 col-sm-1 align-self-center">
-        <a href="#graph" class="btn btn-success btn-lg" role="button" data-toggle="collapse">
-          Heart Rate & Breathing Rate
-        </a>
-      </div>
-
-      <div class = "col-5 col-sm-1 align-self-center">
-        <a class="btn btn-success btn-lg button2" id='sending' role="button" href="#HRVgraph" data-toggle="collapse">
-          Heart Rate Variation
-        </a>
-      </div>
-
-    </div>
-
-    <div class="collapse" id="graph">
-      <div class="row graph justify-content-around">
-
-        <div class="col-12 col-sm-8 align-self-center" style="height: 300px; width: 200%;" >
-
-             <div class="overflow-auto" id="BRGraph"> BR Graph here</div>
-        </div>
-
-        <div class="col-6 col-sm-4 align-self-center">
-          <p id = "BRData">   BR Value here </p>
-        </div>
-
-      </div>
-
-      <div class="row graph justify-content-around">
-
-        <div class="col-12 col-sm-8 align-self-center">
-              <div class="overflow-auto" id="HRGraph">HR Graph here</div>
-          </div>
-
-          <div class="col-6 col-sm-4 align-self-center" >
-            <p id = "HRData">HR Value here</p>
-          </div>
-
-      </div>
-
-
-
-
-
-    </div>
-
-    <div class="collapse" id="HRVgraph">
-      <div class="row graph justify-content-around">
-
-        <div class="col-12 col-sm-8 align-self-center" style="height: 300px; width: 200%;">
-           <div class="overflow-auto"  id="HRVGraph"> HRV Graph here</div>
-        </div>
-
-        <div class="col-6 col-sm-4 align-self-center">
-            <p id = "HRVData"> HRV Value here </p>
-        </div>
-
-      </div>
-    </div>
-
-
-
-    <div class ="container-fluid middle col-6 col-sm-2 align-center">
-      <div class = "row aboutus justify-content-center">
-        <h2> About Us </h2>
-      </div>
-    </div>
-
-    <div class="row txl1 justify-content-center">
+    <div class="row txl1 justify-content-center" style="padding-top: 1cm;">
 
       <div class="col-3 col-sm-1 align-self-center">
         <h6>IoMT</h6>
@@ -181,7 +105,7 @@
 
     </div>
 
-    <div class="row txl2 justify-content-center">
+    <div class="row txl2 justify-content-center" >
         <h5>Contact-Free Vital Signs Monitoring</h5>
     </div>
 
@@ -189,6 +113,160 @@
         <h5>Using Millimeter Wave Radar</h5>
     </div>
 
+    <div class="row justify-content-around txl3" style="margin-top: 10px; margin-bottom: 10px; ">
+      <div class="col-6 col-sm-6 align-self-center">
+        <img src="heart2.png" class="img-fluid" style="max-width: 6cm; max-height: 6cm;" alt="Responsive image">
+      </div>
+
+      <div class="col-6 col-sm-5 align-self-center">
+        <h3 style="color: #53a351;"> Made Keeping You In Mind. </h3>
+        <p style="color: black;">Keeping track of your vital signs is important. That's 
+          why, using a 60 GHz radar, we can accurately and contactlessly 
+          measure your heart rate, breathing rate, and heart rate variability.</p>
+      </div>
+
+    </div>
+
+    <div class ="container-fluid  col-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2 style="color: black;"> Only The Best Components For You. </h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-around txl3" style="margin-top: 10px; margin-bottom: 10px; ">
+      <div class="col-6 col-sm-6 align-self-center">
+        <img src="xm112_1.png" class="img-fluid" style="max-width: 4cm; max-height: 4cm;" alt="Responsive image">
+      </div>
+
+      <div class="col-6 col-sm-5 align-self-center">
+        <h3 style="color: #53a351;"> Acconeer XM112 </h3>
+        <p style="color: black;">This module is a state of the art one.</p>
+      </div>
+
+    </div>
+
+
+
+    <div class="row justify-content-around txl3" style="margin-top: 10px; margin-bottom: 40px;">
+      <div class="col-6 col-sm-6 align-self-center">
+        <img src="rpi.png" class="img-fluid " style="min-width: 3cm; min-height: 3cm;" alt="Responsive image">
+      </div>
+
+      <div class="col-6 col-sm-5 align-self-center">
+        <h3 style="color: #53a351;">Raspberry Pi 3</h3>
+        <p style="color: black;">It is used for on-board DSP and to transmit rersults to the database.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+    <div class ="container-fluid middle col1-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2> What Makes BioRadar Different? </h2>
+      </div>
+    </div>
+
+    <div class="container-fluid" style="color:white;">
+      <div class = "row">
+        <div class="col-12 col-sm-6">
+        <h2 style="color: #53a351; padding: 20px 40px 0px 40px;"> 
+        Internet of Medical Things</h2>
+      </div>
+      <div class="col-12 col-sm-6">
+        <h5 style="padding: 20px 40px 0px 40px;">
+        Our project has been designed in accordance with the growing trend 
+        towards the Internet of Things. The data is securely stored in a
+        realtime database.</h5>
+  </div>
+
+      </div>
+
+
+      <div class = "row">
+        <div class="col-12 col-sm-6">
+        <h2 style="color: #53a351; padding: 20px 40px 0px 40px;"> 
+        High Accuracy</h2>
+      </div>
+      <div class="col-12 col-sm-6">
+        <h5 style="padding: 20px 40px 0px 40px;">
+        Through the on-board real time signal processing, we have managed
+        to obtain an accuracy of greater than 90% when compared with an ECG
+        sensor.</h5>
+      </div>
+
+      </div>
+
+
+      <div class = "row">
+        <div class="col-12 col-sm-6">
+        <h2 style="color: #53a351; padding: 20px 40px 0px 40px;"> 
+        Privacy</h2>
+       </div>
+        <div class="col-12 col-sm-6">
+        <h5 style="padding: 20px 40px 0px 40px;">
+        Through the Acconeer A1 radar, we are able to measure your vital signs
+        without having to store or use any personal data of you like photos or 
+        videos. </h5>
+        </div>
+
+      </div>
+    
+
+    </div>
+    <div class ="container-fluid middle col1-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2> What's Happening Behind the Scenes? </h2>
+      </div>
+    </div>
+
+<div class="container-fluid" style="margin-top: 40px; margin-bottom: 40px; "></div>
+  
+    <div class="card-deck" style="padding-bottom: 2cm;">
+        <div class="card text-white bg-dark ">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #53a351;">Obtain Data</h5>
+            <p class="card-text">The Acconner module is used to get data from the patient continously.</p>
+          </div>
+      </div>
+     
+        <div class="card text-white bg-dark ">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #53a351;">Process Data </h5>
+            <p class="card-text">The data is sent to the Raspberry Pi where on-borad, real times
+              DSP is performed and vital signs are extracted.
+            </p>
+          </div>
+      </div>
+
+     
+        <div class="card text-white bg-dark">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #53a351;">Store and Display Data</h5>
+            <p class="card-text">
+              The data is then sent periodicly to the realtime database to be stored, and the website then
+              retreieves and displays the data in realtime.
+            </p>
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="container-fluid " style="background-color: white; padding-bottom: 2cm;">
+    <div class ="container-fluid col1-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2 style="color: black;"> Heres A Video To Explain It All. </h2>
+      </div>
+    </div>
+
+    <div class="embed-responsive embed-responsive-21by9" >
+      <iframe class="embed-responsive-item" src="https://youtube.com/embed/KObvOl9yG08" allowfullscreen></iframe>
+    </div>
+  </div>
+
+<!--
     <div class="row justify-content-around txl3">
       <div class="col-7 col-sm-2 align-self-end">
         <u>XM112 Radar Module</u>
@@ -222,16 +300,17 @@
 
     </div>
 
-  </div>
+  -->
+</div>
 
   <footer class = "footer">
 
-    <div class ="container-fluid middle">
+    <div class ="container-fluid ">
       <div class = "row aboutus">
-        <h2> Project details </h2>
+        <h2 style="background-color: black;"> Project details </h2>
       </div>
 
-      <div class = "row aboutus">
+      <div class = "row aboutus" style="background-color: black;">
         <p> Bioradar has been created by Sardar Hassan Arfan Khan, Zain Amir Zaman, and Khan Moeen Danish as
           a Final Year Project for SEECS, NUST. Our supervisors are Dr. Hammad M. Cheema and Dr. Usman Zabit.
         </p>
