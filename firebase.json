@@ -1,0 +1,13 @@
+{
+    "hosting": {
+      "port": 5000,
+      "host": "0.0.0.0",
+      "site": "bioradar-iomt",
+      "public": "public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    }
+  }

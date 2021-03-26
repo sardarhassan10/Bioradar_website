@@ -1,89 +1,356 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html class="text-right">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/8.2.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.2.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.2.1/firebase-performance.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Bioradar</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/8.2.1/firebase-app.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="/__/firebase/8.2.1/firebase-analytics.js"></script>
+   <script src="/__/firebase/8.2.4/firebase-database.js"></script>
+   <!-- Initialize Firebase -->
+  <!-- <script src="/__/firebase/init.js"></script> -->
+   <script src="/__/firebase/init.js?useEmulator=true"></script>
+   <script src = "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+   <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+</head>
+
+<body class="text-left body">
+
+
+<nav class="navbar navbar-expand-lg nav_bar sticky-top justify-content-right" style="background-color: black;">
+  <a class="navbar-brand" href="index.html">
+    <img src="br.png" width="50" height="50" alt="" >
+  </a>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="realtime_measure.html">Realtime View <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="data.html"> Data <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="about-us.html">About Us</a>
+      <a data-toggle="modal" data-target="#loginModal" class="nav-item nav-link" href="#View">Log In</a>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+  </div>
+</nav>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+
+<div id="loginModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="content">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Login </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-sm-4">
+                                <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                                <input type="email" class="form-control form-control-sm mr-1" id="exampleInputEmail3" placeholder="Enter email">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label class="sr-only" for="exampleInputPassword3">Password</label>
+                            <input type="password" class="form-control form-control-sm mr-1" id="exampleInputPassword3" placeholder="Password">
+                        </div>
+                        <div class="col-sm-auto">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                                <label class="form-check-label"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm ml-1">Sign in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class = "jumbotron background">
+    <h1 class="display-4"> BioRadar </h1>
+ </div>
+
+
+  <div class ="container-fluid middle " style=" padding-bottom: 30px; background-color: white;">
+
+    <div class="row txl1 justify-content-center" style="padding-top: 1cm;">
+
+      <div class="col-3 col-sm-1 align-self-center">
+        <h6>IoMT</h6>
+      </div>
+
+      <div class="col-3 col-sm-1 align-self-center">
+        <h6>mmWave Radar</h6>
+      </div>
+
+    </div>
+
+    <div class="row txl2 justify-content-center" >
+        <h5>Contact-Free Vital Signs Monitoring</h5>
+    </div>
+
+    <div class="row txl2a justify-content-center">
+        <h5>Using Millimeter Wave Radar</h5>
+    </div>
+
+    <div class="row justify-content-around txl3" style="margin-top: 10px; margin-bottom: 10px; ">
+      <div class="col-6 col-sm-6 align-self-center">
+        <img src="heart2.png" class="img-fluid" style="max-width: 6cm; max-height: 6cm;" alt="Responsive image">
+      </div>
+
+      <div class="col-6 col-sm-5 align-self-center">
+        <h3 style="color: #53a351;"> Made Keeping You In Mind. </h3>
+        <p style="color: black;">Keeping track of your vital signs is important. That's 
+          why, using a 60 GHz radar, we can accurately and contactlessly 
+          measure your heart rate, breathing rate, and heart rate variability.</p>
+      </div>
+
+    </div>
+
+    <div class ="container-fluid  col-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2 style="color: black;"> Only The Best Components For You. </h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-around txl3" style="margin-top: 10px; margin-bottom: 10px; ">
+      <div class="col-6 col-sm-6 align-self-center">
+        <img src="xm112_1.png" class="img-fluid" style="max-width: 4cm; max-height: 4cm;" alt="Responsive image">
+      </div>
+
+      <div class="col-6 col-sm-5 align-self-center">
+        <h3 style="color: #53a351;"> Acconeer XM112 </h3>
+        <p style="color: black;">This module is a state of the art one.</p>
+      </div>
+
+    </div>
+
+
+
+    <div class="row justify-content-around txl3" style="margin-top: 10px; margin-bottom: 40px;">
+      <div class="col-6 col-sm-6 align-self-center">
+        <img src="rpi.png" class="img-fluid " style="min-width: 3cm; min-height: 3cm;" alt="Responsive image">
+      </div>
+
+      <div class="col-6 col-sm-5 align-self-center">
+        <h3 style="color: #53a351;">Raspberry Pi 3</h3>
+        <p style="color: black;">It is used for on-board DSP and to transmit rersults to the database.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+    <div class ="container-fluid middle col1-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2> What Makes BioRadar Different? </h2>
+      </div>
+    </div>
+
+    <div class="container-fluid" style="color:white;">
+      <div class = "row">
+        <div class="col-12 col-sm-6">
+        <h2 style="color: #53a351; padding: 20px 40px 0px 40px;"> 
+        Internet of Medical Things</h2>
+      </div>
+      <div class="col-12 col-sm-6">
+        <h5 style="padding: 20px 40px 0px 40px;">
+        Our project has been designed in accordance with the growing trend 
+        towards the Internet of Things. The data is securely stored in a
+        realtime database.</h5>
+  </div>
+
+      </div>
+
+
+      <div class = "row">
+        <div class="col-12 col-sm-6">
+        <h2 style="color: #53a351; padding: 20px 40px 0px 40px;"> 
+        High Accuracy</h2>
+      </div>
+      <div class="col-12 col-sm-6">
+        <h5 style="padding: 20px 40px 0px 40px;">
+        Through the on-board real time signal processing, we have managed
+        to obtain an accuracy of greater than 90% when compared with an ECG
+        sensor.</h5>
+      </div>
+
+      </div>
+
+
+      <div class = "row">
+        <div class="col-12 col-sm-6">
+        <h2 style="color: #53a351; padding: 20px 40px 0px 40px;"> 
+        Privacy</h2>
+       </div>
+        <div class="col-12 col-sm-6">
+        <h5 style="padding: 20px 40px 0px 40px;">
+        Through the Acconeer A1 radar, we are able to measure your vital signs
+        without having to store or use any personal data of you like photos or 
+        videos. </h5>
+        </div>
+
+      </div>
+    
+
+    </div>
+    <div class ="container-fluid middle col1-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2> What's Happening Behind the Scenes? </h2>
+      </div>
+    </div>
+
+<div class="container-fluid" style="margin-top: 40px; margin-bottom: 40px; "></div>
+  
+    <div class="card-deck" style="padding-bottom: 2cm;">
+        <div class="card text-white bg-dark ">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #53a351;">Obtain Data</h5>
+            <p class="card-text">The Acconner module is used to get data from the patient continously.</p>
+          </div>
+      </div>
+     
+        <div class="card text-white bg-dark ">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #53a351;">Process Data </h5>
+            <p class="card-text">The data is sent to the Raspberry Pi where on-borad, real times
+              DSP is performed and vital signs are extracted.
+            </p>
+          </div>
+      </div>
+
+     
+        <div class="card text-white bg-dark">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #53a351;">Store and Display Data</h5>
+            <p class="card-text">
+              The data is then sent periodicly to the realtime database to be stored, and the website then
+              retreieves and displays the data in realtime.
+            </p>
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="container-fluid " style="background-color: white; padding-bottom: 2cm;">
+    <div class ="container-fluid col1-12 col-sm-12 align-center">
+      <div class = "row aboutus justify-content-center" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2 style="color: black;"> Heres A Video To Explain It All. </h2>
+      </div>
+    </div>
+
+    <div class="embed-responsive embed-responsive-21by9" >
+      <iframe class="embed-responsive-item" src="https://youtube.com/embed/KObvOl9yG08" allowfullscreen></iframe>
+    </div>
+  </div>
+
+<!--
+    <div class="row justify-content-around txl3">
+      <div class="col-7 col-sm-2 align-self-end">
+        <u>XM112 Radar Module</u>
+      </div>
+
+      <div class="col-5 col-sm-2 align-self-end">
+        <u>RPI IoT Node </u>
+      </div>
+
+    </div>
+
+    <div class="row justify-content-around txl3">
+      <div class="col-7 col-sm-2 align-self-end">
+        <img src="xm122.png" class="img-fluid" alt="Responsive image">
+      </div>
+
+      <div class="col-5 col-sm-2 align-self-end">
+        <img src="rpi.png" class="img-fluid" alt="Responsive image">
+      </div>
+
+    </div>
+
+    <div class="row justify-content-around txl3">
+      <div class="col-7 col-sm-3 align-self-end">
+        Used To Obtain Data
+      </div>
+
+      <div class="col-5 col-sm-3 align-self-end">
+        Used To Process and Transmit Data
+      </div>
+
+    </div>
+
+  -->
+</div>
+
+  <footer class = "footer">
+
+    <div class ="container-fluid ">
+      <div class = "row aboutus">
+        <h2 style="background-color: black;"> Project details </h2>
+      </div>
+
+      <div class = "row aboutus" style="background-color: black;">
+        <p> Bioradar has been created by Sardar Hassan Arfan Khan, Zain Amir Zaman, and Khan Moeen Danish as
+          a Final Year Project for SEECS, NUST. Our supervisors are Dr. Hammad M. Cheema and Dr. Usman Zabit.
+        </p>
+      </div>
+
+    </div>
+
+      <div class ="container">
+          <div class="row">
+
+         <div class ="row justify-content-center">
+              <div class "col-auto align-text-center">
+                  <p>© Copyright 2020 Sardar Hassan Arfan Khan</p>
+              </div>
+         </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <script src="jquery/dist/jquery.slim.min.js"></script>
+    <script src="popper.js/dist/umd/popper.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.2.1/firebase-app.js"></script>
+  <!--  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+--->
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script src="/__/firebase/8.2.1/firebase-analytics.js"></script>
+     <script src="/__/firebase/8.2.4/firebase-database.js"></script>
+
+
+     <!-- Initialize Firebase -->
+    <!-- <script src="/__/firebase/init.js"></script> -->
+     <script src="/__/firebase/init.js?useEmulator=true"></script>
+     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+     <script src="graph.js"></script>
+</body>
 </html>

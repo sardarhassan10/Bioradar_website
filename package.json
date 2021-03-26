@@ -11,11 +11,15 @@
   "author": "sardarhassan",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "lite-server": "^2.6.1"
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "webpack": "^5.28.0",
+    "xlsexport": "^1.5.2"
   }
 }
