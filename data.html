@@ -112,15 +112,6 @@
       </div>
 
       <div class = 'col-12 col-sm-2'>
-        <select id="vitallist" onchange="getVitalSign();" size = '1' style=" margin-top: 10px;">
-          <option value="Select">Select Vital Sign</option>
-          <option value="HR">HR</option>
-          <option value="BR">BR</option>
-          <option value="HRV">HRV</option>
-        </select>
-      </div>
-
-      <div class = 'col-12 col-sm-2'>
         <select id="filterlist" onchange="getFilter();" size = '1' style=" margin-top: 10px;">
           <option value="Select">Select Filter</option>
           <option value="All">All</option>
@@ -146,14 +137,19 @@
     </div>
 
      <div class="row" style="margin-left: 1cm; margin-bottom: 10px; margin-top: 30px;">
+      
       <h6 style="color: white;" id="dataAvailability">
       
       </h6>
-      <h6 style="color: white;" id="dataAvailability">
-        <ul id="Datalist">
+
+      <table class="table table-borderless table-dark" id ="vitalTable">
+    
+      </table>
+     
+        <ul id="Datalist" style="color: white;">
          
         </ul>
-      </h6>
+  
     </div>
     
 </div>
