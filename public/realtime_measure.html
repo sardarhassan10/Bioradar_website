@@ -98,16 +98,23 @@
             <h1 style="color: #53a351;">Measure Health Data In Realtime</h1>
         </div>
 
-        <div class="row txl4 justify-content-center">
+        <div class="row justify-content-center" style="margin-bottom: 10px;">
           <h5 style="color: white;">Choose your User:</h5>
-      
-          <select id="userlist" onchange="getUser();" size = '1' style="margin-left: 1cm">
-            <option value="Select">Select User</option>
-          </select>
+          <div class="col-4 col-sm-2">
+            <select class="form-control form-control-lg" id="userlist" onchange="getUser();;" size = '1' style="margin-left: 1cm">
+            <!--<select id="userlist" onchange="getUser();" size = '1' style="margin-left: 1cm">-->
+              <option value="Select">Select User</option>
+           </select>
+          </div>
 
+        </div> 
+
+        <div class="row justify-content-center" style="margin-bottom: 10px;">
+          <h5 id = "Status"style="margin-right: 10px; margin-top: 5px;"> Status: Disconnected. Please make sure RPI is on and refresh this page.</h5>
+          <button class="btn btn-sm" type="button" onclick="connect();" style="background-color: #53a351; color: white;"> Start </button>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="margin-bottom: 10px;">
             <h5>Click On Your Desired Vital Sign</h5>
         </div>
     
@@ -216,6 +223,7 @@
  <script src="/__/firebase/init.js?useEmulator=true"></script>
  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
  <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+ <script src="connection_to_rpi.js"></script>
  <script src="graph.js"></script>
 </body>
 </html>

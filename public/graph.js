@@ -48,7 +48,6 @@ var hrv_graph_data = [];
 var graph_counter = 0;
 const graph_limit = 5;
 
-
 //function to get time 
 function getTime(msValue){
 	var d = new Date(parseInt(msValue)); 

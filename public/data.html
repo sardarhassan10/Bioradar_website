@@ -106,13 +106,15 @@
     
       <div class = 'row justify-content-left' style="margin-left: 1cm;">
       <div class = 'col-12 col-sm-2'>
-        <select id="userlist" onchange="getUser();" size = '1' style=" margin-top: 10px;">
+        <select class="form-control form-control-lg" id="userlist" onchange="getUser();" size = '1' style=" margin-top: 10px;">
+          <!--<select id="userlist" onchange="getUser();" size = '1' style=" margin-top: 10px;">-->
           <option value="Select">Select User</option>
         </select>
       </div>
 
       <div class = 'col-12 col-sm-2'>
-        <select id="filterlist" onchange="getFilter();" size = '1' style=" margin-top: 10px;">
+        <select class="form-control form-control-lg" id="filterlist" onchange="getFilter();" size = '1' style=" margin-top: 10px;">
+        <!-- <select id="filterlist" onchange="getFilter();" size = '1' style=" margin-top: 10px;">-->
           <option value="Select">Select Filter</option>
           <option value="All">All</option>
           <option value="Yesterday">Yesterday</option>
@@ -122,12 +124,13 @@
         </select>
       </div>
 
-      <div class = 'col-12 col-sm-2'>
-        <button onclick="searchButtonFunction();"  style=" margin-top: 10px; ">Search</button>
+      <div class = 'col-12 col-sm-1'>
+        <button class="btn btn-lg" type="button" onclick="searchButtonFunction();" style="background-color: #53a351; color: white; margin-top: 5px;">Search</button>
       </div>
 
-      <div class = 'col-12 col-sm-2'>
-        <button onclick="downloadButtonFunction();"  style=" margin-top: 10px;">Export Vitals to CSV</button>
+      <div class = 'col-12 col-sm-3'>
+        <button class="btn btn-lg" type="button" onclick="downloadButtonFunction();" style="background-color: #53a351; color: white; margin-top: 5px;">Export Vitals to CSV</button>
+        
       </div>
 
       <div class = 'col-sm-1'></div>
@@ -142,7 +145,7 @@
       
       </h6>
 
-      <table class="table table-borderless table-dark" id ="vitalTable">
+      <table class="table table-borderless table-dark table-responsive-sm table-hover" id ="vitalTable">
     
       </table>
      

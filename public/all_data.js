@@ -88,7 +88,7 @@ function printVitalSign(readings){
     {
         //select table and row where data is to be entered 
         var table = document.getElementById("vitalTable");
-        var row = table.insertRow(i+1);
+        var row = table.insertRow(1);
 
         //select cell of row to enter data into
         var cell1 = row.insertCell(0);
@@ -280,40 +280,44 @@ function getFilter(){
 
 //function called when search is clicked 
 function searchButtonFunction(){
-
-    //console.log(timekeys);
-    filteredData = [];
-    fillData();
-    //if data not available
-    if (userData == null){ 
-        console.log("No data");
-        document.getElementById("dataAvailability").innerHTML = 'No Data Available:';
-    }
-    //if data available
-    else {
-        if (selected_filter=='All')
-        {
-            //console.log('All selected');
-            allFilter(); //call function to display all data
-            printVitalSign(filteredData);
+    if (selected_user != 'Select' && selected_user != null){
+        if (selected_filter != 'Select' && selected_filter != null){
+            //console.log(timekeys);
+            filteredData = [];
+            fillData();
+            //if data not available
+            if (userData == null){ 
+                console.log("No data");
+                document.getElementById("dataAvailability").innerHTML = 'No Data Available:';
+                }
+            //if data available
+            else {
+                if (selected_filter=='All'){
+                 //console.log('All selected');
+                    allFilter(); //call function to display all data
+                    printVitalSign(filteredData);
+                }
+                else if (selected_filter=='Yesterday'){
+                    yesterdayFilter();
+                    printVitalSign(filteredData);
+                }
+                else if (selected_filter=='Today'){
+                    todayFilter();
+                    printVitalSign(filteredData);
+                }
+                else if (selected_filter=='PreviousSixHours'){
+                    previousSixHoursFilter();
+                    printVitalSign(filteredData);
+                }
+                else if (selected_filter=='LastHour'){
+                    pastHourFilter();
+                    printVitalSign(filteredData);
+                }
+            }
+        } 
+    } else {
+        alert('Please Select Correct Filters!');
         }
-        else if (selected_filter=='Yesterday'){
-            yesterdayFilter();
-            printVitalSign(filteredData);
-        }
-        else if (selected_filter=='Today'){
-            todayFilter();
-            printVitalSign(filteredData);
-        }
-        else if (selected_filter=='PreviousSixHours'){
-            previousSixHoursFilter();
-            printVitalSign(filteredData);
-        }
-        else if (selected_filter=='LastHour'){
-            pastHourFilter();
-            printVitalSign(filteredData);
-        }
-    }
 }
 
 //function to initiate csv file download
@@ -374,7 +378,7 @@ function downloadButtonFunction()
             }
         }
     else {
-        alert('Please Select Correct Filters!')
+        alert('Please Select Correct Filters!');
     }
 }
 
