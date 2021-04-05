@@ -3,12 +3,9 @@ import XlsExport from "./xlsexport/xls-export.js";
 
 //set functions to global
 window.getUser = getUser;
-window.getVitalSign = getVitalSign;
 window.getFilter = getFilter;
 window.searchButtonFunction = searchButtonFunction;
 window.downloadButtonFunction = downloadButtonFunction;
-window.getVitalSign = getVitalSign;
-window.getFilter = getFilter;
 
 // Get a reference to the database service
 var database = firebase.database();
@@ -30,18 +27,10 @@ ref.on ('value', getData,err);
 
 
 var selected_user; //selected user
-var selected_vital_sign; //selected vital sign
 var selected_filter; //selected filter
 var setData; //all data from database  
 var userData = []; //all data of user
 var filteredData = []; //all of the filtered data 
-
-// function to get user name 
-function getUser(){
-    selected_user = document.getElementById("userlist").value;
-    console.log(selected_user);
-    // get data of selected user 
-}
 
 // function to get Text format of date 
 function getDateText(msnumber)
@@ -56,30 +45,64 @@ function getTimeText(msnumber){
     return d.toTimeString();
 }
 
+//function to create table header
+function printTableHeader(){
+    var table = document.getElementById("vitalTable");
+    var header = table.createTHead();
+    var row = header.insertRow(0);
+
+    var cell = row.insertCell(0);
+    cell.innerHTML = "<b>Date</b>";
+
+    var cell1 = row.insertCell(1);
+    cell1.innerHTML = "<b>Time</b>";
+
+    var cell2 = row.insertCell(2);
+    cell2.innerHTML = "<b>HR</b>";
+
+    var cell3 = row.insertCell(3);
+    cell3.innerHTML = "<b>BR</b>";
+
+    var cell4 = row.insertCell(4);
+    cell4.innerHTML = "<b>HRV</b>";
+}
+
+
+
 //function to print vital signs
 function printVitalSign(readings){
+
+    //what to say when data is available and when it is not available 
+    if(filteredData.length == 0)
+    document.getElementById("dataAvailability").innerHTML = 'No Data Available.';
+    else 
+    document.getElementById("dataAvailability").innerHTML = 'Data Available:';
+    
+    //remove previous values 
+    $("#vitalTable tr").remove(); 
+    // print table header
+    printTableHeader();
+
+    // for number of data instances 
     for (var i = 0;i<readings.length;i++)
     {
-        if (selected_vital_sign == 'HR'){
-            var node = document.createElement("li"); 
-            var textnode = document.createTextNode(selected_vital_sign + " is " + readings[i].HR + " at " + readings[i].Date + " " + readings[i].Time); 
-            node.appendChild(textnode);
-            document.getElementById("Datalist").appendChild(node);
-        }
+        //select table and row where data is to be entered 
+        var table = document.getElementById("vitalTable");
+        var row = table.insertRow(i+1);
 
-        else if (selected_vital_sign == 'HRV'){
-            var node = document.createElement("li"); 
-            var textnode = document.createTextNode(selected_vital_sign + " is " + readings[i].HRV + " at " + readings[i].Date + " " + readings[i].Time); 
-            node.appendChild(textnode);
-            document.getElementById("Datalist").appendChild(node);
-        }
+        //select cell of row to enter data into
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
 
-        else if (selected_vital_sign == 'BR'){
-            var node = document.createElement("li"); 
-            var textnode = document.createTextNode(selected_vital_sign + " is " + readings[i].BR + " at " + readings[i].Date + " " + readings[i].Time); 
-            node.appendChild(textnode);
-            document.getElementById("Datalist").appendChild(node);
-        }
+        //enter data 
+        cell1.innerHTML = readings[i].Date;
+        cell2.innerHTML = readings[i].Time;
+        cell3.innerHTML = readings[i].HR;
+        cell4.innerHTML = readings[i].BR;
+        cell5.innerHTML = readings[i].HRV;
     }
 
 
@@ -100,10 +123,6 @@ function allFilter()
                     "HRV":userData[i].HRV
                 });
             }
-    if (userData != null)
-        document.getElementById("dataAvailability").innerHTML = 'Data Available:';
-    else 
-        document.getElementById("dataAvailability").innerHTML = 'No Data Available.';
 }
 
 //function when today filter is selected
@@ -130,10 +149,6 @@ function todayFilter(){
         }
     }
 
-    if(filteredData.length == 0)
-        document.getElementById("dataAvailability").innerHTML = 'No Data Available.';
-    else 
-        document.getElementById("dataAvailability").innerHTML = 'Data Available:';
 }
 
 
@@ -163,11 +178,6 @@ function yesterdayFilter(){
             });
         }
     } 
-    
-    if(filteredData.length == 0)
-        document.getElementById("dataAvailability").innerHTML = 'No Data Available.';
-    else 
-        document.getElementById("dataAvailability").innerHTML = 'Data Available:';
 }
 
 //function when past 6 hour filter selected 
@@ -191,12 +201,6 @@ function previousSixHoursFilter(){
             });
         }
     } 
-
-
-    if(filteredData.length == 0)
-        document.getElementById("dataAvailability").innerHTML = 'No Data Available.';
-    else 
-        document.getElementById("dataAvailability").innerHTML = 'Data Available:';  
 }
 
 
@@ -221,14 +225,7 @@ function pastHourFilter(){
             });
         }
     } 
-    if(filteredData.length == 0)
-        document.getElementById("dataAvailability").innerHTML = 'No Data Available.';
-    else 
-        document.getElementById("dataAvailability").innerHTML = 'Data Available:';  
 }
-
-
-
 
 // function to display error
 function err(error){
@@ -268,10 +265,11 @@ function fillData(){
     }
 }
 
-//function to get selected vital sign
-function getVitalSign(){
-    selected_vital_sign = document.getElementById("vitallist").value;
-    console.log(selected_vital_sign);
+// function to get user name 
+function getUser(){
+    selected_user = document.getElementById("userlist").value;
+    console.log(selected_user);
+    // get data of selected user 
 }
 
 //function to get selected filter
@@ -282,11 +280,6 @@ function getFilter(){
 
 //function called when search is clicked 
 function searchButtonFunction(){
-    //clear list 
-    var toClear = document.getElementById("Datalist");
-    while( toClear.firstChild ){
-        toClear.removeChild( toClear.firstChild );
-      }
 
     //console.log(timekeys);
     filteredData = [];
@@ -347,7 +340,7 @@ function downloadButtonFunction()
                         alert('No Data');
                 }
                 else if (selected_filter=='Yesterday'){
-                    updateData();
+                    fillData();
                     yesterdayFilter();
                     if (filteredData.length != 0)
                         download();
@@ -355,7 +348,7 @@ function downloadButtonFunction()
                         alert('No Data');
                 }
                 else if (selected_filter=='Today'){
-                    updateData();
+                    fillData();
                     todayFilter();
                     if (filteredData.length != 0)
                         download();
@@ -363,7 +356,7 @@ function downloadButtonFunction()
                         alert('No Data');
                 }
                 else if (selected_filter=='PreviousSixHours'){
-                    updateData();
+                    fillData();
                     previousSixHoursFilter();
                     if (filteredData.length != 0)
                         download();
@@ -371,7 +364,7 @@ function downloadButtonFunction()
                         alert('No data!');
                 }
                 else if (selected_filter=='LastHour'){
-                    updateData();
+                    fillData();
                     pastHourFilter();
                     if (filteredData.length != 0)
                         download();
