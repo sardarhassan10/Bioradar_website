@@ -99,19 +99,29 @@
         </div>
 
         <div class="row justify-content-center" style="margin-bottom: 10px;">
-          <h5 style="color: white;">Choose your User:</h5>
           <div class="col-4 col-sm-2">
-            <select class="form-control form-control-lg" id="userlist" onchange="getUser();;" size = '1' style="margin-left: 1cm">
+            <h5 style="color: white;">Choose your User:</h5>
+          </div>
+          <div class="col-4 col-sm-2">
+            <select class="form-control form-control-lg" id="userlist" onchange="getUser();" size = '1' >
             <!--<select id="userlist" onchange="getUser();" size = '1' style="margin-left: 1cm">-->
               <option value="Select">Select User</option>
            </select>
           </div>
 
+          <div class="col-4 col-sm-1">
+            <button class="btn btn-sm" type="button" onclick="connect();" style="background-color: #53a351; color: white; margin-left: 20px;"> Start </button>
+          </div>
+          
+
         </div> 
 
+        <div class="container-fluid">
         <div class="row justify-content-center" style="margin-bottom: 10px;">
-          <h5 id = "Status"style="margin-right: 10px; margin-top: 5px;"> Status: Disconnected. Please make sure RPI is on and refresh this page.</h5>
-          <button class="btn btn-sm" type="button" onclick="connect();" style="background-color: #53a351; color: white;"> Start </button>
+          
+            <h5 id = "Status" style="margin-top: 5px;"> Status: Disconnected. Please make sure RPI is on and refresh this page.</h5>
+         
+        </div>
         </div>
 
         <div class="row justify-content-center" style="margin-bottom: 10px;">
